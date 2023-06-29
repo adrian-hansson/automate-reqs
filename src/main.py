@@ -6,6 +6,9 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from shutil import copyfile
 
+REQUIREMENT_NUMBER: str = 'Title'
+REQUIREMENT_TITLE: str = 'RequirementTitle'
+
 # ensure NLTK data is available
 nltk.download('punkt')
 nltk.download('stopwords')
@@ -58,12 +61,12 @@ def contains_keywords(sentence, keywords):
 
 # Analyze requirements to identify integrations and systems
 for i, requirement in requirements_df.iterrows():
-    if contains_keywords(requirement['Title'], integration_keywords):
+    if contains_keywords(requirement[REQUIREMENT_TITLE], integration_keywords):
         # If integration keywords are found, add a new row to the integrations dataframe
-        integrations_df = integrations_df.append({'source': '', 'target': '', 'method': '', 'trigger': '', 'action': '', 'requirement': requirement['Requirement number']}, ignore_index=True)
-    if contains_keywords(requirement['Title'], system_keywords):
+        integrations_df = integrations_df.append({'source': '', 'target': '', 'method': '', 'trigger': '', 'action': '', 'requirement': requirement[REQUIREMENT_NUMBER]}, ignore_index=True)
+    if contains_keywords(requirement[REQUIREMENT_TITLE], system_keywords):
         # If system keywords are found, add a new row to the systems dataframe
-        systems_df = systems_df.append({'id': '', 'name': '', 'parent': '', 'requirement': requirement['Requirement number']}, ignore_index=True)
+        systems_df = systems_df.append({'id': '', 'name': '', 'parent': '', 'requirement': requirement[REQUIREMENT_NUMBER]}, ignore_index=True)
 
 # Write the dataframes back to the Excel file
 with pd.ExcelWriter(tgt_file, engine='openpyxl', mode='a') as writer:

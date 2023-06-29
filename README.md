@@ -29,8 +29,8 @@ Read/write requirements data from/to the sheet called "requirements" in an Excel
 
 Column | Description
 ------ | -----------
-Requirement number | Unique number for each requirement
-Title | The name and description of the requirement
+Title | Unique number for each requirement
+RequirementTitle | The name and description of the requirement
 Status | The status of the requirement. If value includes "Cancelled", then ignore the requirement.
 Requirement category | Denotes the type of requirement. Useful for sorting.
 Capability | Denote which system capability the requirement is related to.
